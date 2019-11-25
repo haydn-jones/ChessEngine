@@ -1,30 +1,20 @@
 import pyglet
 from pyglet.window import mouse
-from resources.resources import load_images
+from resources.resources import ResourceFactory
 
 class Renderer(pyglet.window.Window):
     def __init__(self):
-        super().__init__(width=800, height=800, vsync=False, resizable=True)
+        super().__init__(width=900, height=900)
         self.exited = False
 
-        self.images = {}
-        self.load_resources()
+        self.resources = ResourceFactory()
+        self.resources.set_scale(self.width, self.height)
 
-        self.sprite_scale = 1
         self.sprites = []
         self.load_sprites()
 
-    def load_resources(self):
-        self.images = load_images()
-
     def load_sprites(self):
-        self.board = pyglet.sprite.Sprite(self.images['board'])
-
-    def on_resize(self, width, height):
-        super().on_resize(width, height)
-
-        factor_x = self.width  / self.board_img.width
-        factor_y = self.height / self.board_img.height
+        self.board = self.resources.get_sprite('board')
 
     def on_draw(self):
         self.clear()
