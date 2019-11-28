@@ -6,16 +6,7 @@ class Game():
         self.board = chess.Board()
     
     def print_board(self):
-        state = self.get_state()
-
-        for rank in state:
-            for piece in rank:
-                if piece:
-                    print(piece, end=" ")
-                else:
-                    print(".", end=" ")
-            
-            print("")
+        print(self.board)
     
     def get_state(self):
         state = []
@@ -30,3 +21,12 @@ class Game():
             state.append(rank)
 
         return state
+
+    def move(self, from_square, to_square):
+        from_square = f"{chess.FILE_NAMES[from_square[1]]}{chess.RANK_NAMES[from_square[0]]}"
+        to_square   = f"{chess.FILE_NAMES[to_square[1]]}{chess.RANK_NAMES[to_square[0]]}"
+    
+        try:
+            self.board.push_uci(f"{from_square}{to_square}")
+        except:
+            print("Illegal move / Not your turn!")

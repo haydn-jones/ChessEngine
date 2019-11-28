@@ -17,8 +17,10 @@ class Renderer(pyglet.window.Window):
         self.sprites = []
         self.load_sprites()
 
-        self.selected_square = (-1, -1)
-        
+        self.from_square = (-1, -1)
+
+        self.move = (None, None)
+
     def load_sprites(self):
         self.board = self.resources.get_sprite('board')
         self.highlight = self.resources.get_sprite('highlight')
@@ -36,14 +38,10 @@ class Renderer(pyglet.window.Window):
             col = x // (self.resources.scale * self.resources.square_width)
             row = y // (self.resources.scale * self.resources.square_width)
 
-            if self.selected_square == (row, col):
-                row = -1
-                col = -1
+            self.handle_selection(row, col)
 
-            self.selected_square = (row, col)
-            
-            self.highlight.x = col * self.resources.scale * self.resources.square_width
-            self.highlight.y = row * self.resources.scale * self.resources.square_width
+            self.highlight.x = self.from_square[1] * self.resources.scale * self.resources.square_width
+            self.highlight.y = self.from_square[0] * self.resources.scale * self.resources.square_width
 
     def on_close(self):
         self.exited = True
@@ -73,5 +71,25 @@ class Renderer(pyglet.window.Window):
 
                 sprite.x = file_index * self.resources.square_width * self.resources.scale
                 sprite.y = (7 - rank_index) * self.resources.square_width * self.resources.scale
-                
+
                 self.sprites.append(sprite)
+
+    def handle_selection(self, row, col):
+        if self.from_square == (row, col):
+            self.from_square = (-1, -1)
+        elif self.from_square == (-1, -1):
+            self.from_square = (row, col)
+        else:
+            self.move = (self.from_square, (row, col))
+            self.from_square = (-1, -1)
+
+    def get_move(self):
+        if self.move != (None, None):
+            ret = self.move[:]
+
+            self.move = (None, None)
+            self.from_square = (-1, -1)
+
+            return ret
+
+        return None
