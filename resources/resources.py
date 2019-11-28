@@ -4,7 +4,8 @@ import chess
 
 class ResourceFactory():
     resources = {
-        'board'   : "./resources/board.png",
+        'board'    : "./resources/board.png",
+        'highlight': "./resources/highlight.png",
 
         'pawn_b'  : "./resources/pawn_b.png",
         'knight_b': "./resources/knight_b.png",
