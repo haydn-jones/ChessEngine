@@ -5,22 +5,20 @@ import chess
 class ResourceFactory():
     resources = {
         'board'   : "./resources/board.png",
-        'text'    : "./resources/text.png",
-        'numbers' : "./resources/numbers.png",
 
-        'pawn_b'  : "./resources/black_pawn.png",
-        'knight_b': "./resources/black_knight.png",
-        'bishop_b': "./resources/black_bishop.png",
-        'rook_b'  : "./resources/black_rook.png",
-        'queen_b' : "./resources/black_queen.png",
-        'king_b'  : "./resources/black_king.png",
+        'pawn_b'  : "./resources/pawn_b.png",
+        'knight_b': "./resources/knight_b.png",
+        'bishop_b': "./resources/bishop_b.png",
+        'rook_b'  : "./resources/rook_b.png",
+        'queen_b' : "./resources/queen_b.png",
+        'king_b'  : "./resources/king_b.png",
 
-        'pawn_w'  : "./resources/white_pawn.png",
-        'knight_w': "./resources/white_knight.png",
-        'bishop_w': "./resources/white_bishop.png",
-        'rook_w'  : "./resources/white_rook.png",
-        'queen_w' : "./resources/white_queen.png",
-        'king_w'  : "./resources/white_king.png",
+        'pawn_w'  : "./resources/pawn_w.png",
+        'knight_w': "./resources/knight_w.png",
+        'bishop_w': "./resources/bishop_w.png",
+        'rook_w'  : "./resources/rook_w.png",
+        'queen_w' : "./resources/queen_w.png",
+        'king_w'  : "./resources/king_w.png",
     }
 
     def __init__(self):

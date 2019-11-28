@@ -5,7 +5,8 @@ import chess
 
 class Renderer(pyglet.window.Window):
     def __init__(self):
-        super().__init__(width=720, height=720)
+        super().__init__(width=768, height=768)
+
         self.exited = False
 
         self.resources = ResourceFactory()
@@ -25,6 +26,8 @@ class Renderer(pyglet.window.Window):
             sprite.draw()
 
     def on_mouse_press(self, x, y, button, modifiers):
+        super().on_mouse_press(x, y, button, modifiers)
+
         if button == mouse.LEFT:
             print('The left mouse button was pressed.')
 
@@ -48,8 +51,9 @@ class Renderer(pyglet.window.Window):
 
                 sprite = self.resources.get_sprite(self.resources.piece_to_name(piece))
 
-                sprite.x = file_index * self.resources.square_width * self.resources.scale + self.resources.square_width
-                sprite.y = (7 - rank_index) * self.resources.square_width * self.resources.scale + self.resources.square_width
+                sprite.x = file_index * self.resources.square_width * self.resources.scale
+                sprite.y = (7 - rank_index) * self.resources.square_width * self.resources.scale
+                
                 self.sprites.append(sprite)
 
         self.dispatch_event('on_draw')
